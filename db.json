@@ -1,56 +1,85 @@
 {
   "contacts": [
     {
-      "id": 1,
+      "id": "1",
       "firstName": "Anna",
       "lastName": "Almirall Puig",
       "phone": "+34612345678",
       "email": "anna@example.com",
-      "groupId": 3,
+      "groupId": "1",
       "favorite": true,
       "createdAt": "2025-04-25T10:00:00Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "firstName": "Bernat",
       "lastName": "Gomà Serra",
       "phone": "+34699000111",
       "email": "bernat@empresa.cat",
-      "groupId": 1,
+      "groupId": "3",
       "favorite": false,
       "createdAt": "2025-04-20T09:00:00Z"
     },
     {
-      "id": 3,
+      "id": "3",
       "firstName": "Carles",
       "lastName": "Mir López",
       "phone": "+34655123456",
       "email": "carles@gmail.com",
-      "groupId": 2,
+      "groupId": "1",
       "favorite": true,
       "createdAt": "2025-04-28T14:30:00Z"
+    },
+    {
+      "firstName": "Andrea",
+      "lastName": "Escolar",
+      "phone": "+34609876543",
+      "email": "ae@gmail.com",
+      "groupId": "2",
+      "favorite": false,
+      "createdAt": "2026-05-17T14:22:43.820Z",
+      "id": "E_dnmqm1MUs"
     }
   ],
   "groups": [
-    { "id": 1, "name": "Treball", "color": "#2563eb" },
-    { "id": 2, "name": "Personal", "color": "#9d174d" },
-    { "id": 3, "name": "Família", "color": "#166534" }
+    {
+      "name": "Treball",
+      "color": "#1e293b",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "name": "Personal",
+      "color": "#9d174d"
+    },
+    {
+      "id": "3",
+      "name": "Família",
+      "color": "#2563eb"
+    },
+    {
+      "name": "Clients",
+      "color": "#0e7490",
+      "id": "O_OJsglArSU"
+    }
   ],
   "history": [
     {
-      "id": 1,
+      "id": "1",
       "contactId": 1,
       "type": "call",
       "direction": "incoming",
-      "date": "2025-04-30T10:32:00Z",
-      "duration": 180
+      "duration": 180,
+      "date": "2025-04-30T10:32:00Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "contactId": 3,
       "type": "message",
       "direction": "incoming",
+      "duration": null,
       "date": "2025-04-29T18:05:00Z"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
