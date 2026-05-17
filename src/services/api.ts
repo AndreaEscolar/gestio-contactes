@@ -34,29 +34,32 @@ api.interceptors.response.use (
 )
 
 export const contactsApi = {
-    getAll: () => 
-        api.get<Contact[]>('/contacts').then(r => r.data),
+    getAll: async ():
+        Promise<Contact[]> => (await api.get<Contact[]>('/contacts')).data,
 
-    getById: (id: number) => 
-        api.get<Contact>(`/contacts/${id}`).then(r => r.data),
+    getById: async (id: number): Promise<Contact> => 
+        (await api.get<Contact>(`/contacts/${id}`)).data,
 
-    create: (data: ContactForm) => 
-        api.post<Contact>(`/contacts`, {
-            ...data,
+    create: async (form: ContactForm): Promise<Contact> =>  {
+        const payload = {
+            ...form,
             createdAt: new Date().toISOString()
-        }).then(r => r.data),
+        }
 
-    update: (id: number, data: Partial<Contact>) => 
-        api.put<Contact>(`/contacts/${id}`, data).then(r => r.data),
+        return ( await api.post<Contact>('/contacts', payload)).data
+    },
+
+    update: async (id: number, form: ContactForm): Promise<Contact> => 
+        (await api.put<Contact>(`/contacts/${id}`, form)).data,
     
-    delete: (id:number) => 
-        api.delete(`/contacts/${id}`).then(r => r.data),
+    delete: async (id:number): Promise<void> => {
+        await api.delete(`/contacts/${id}`)
+    },
 
-    toggleFavorite: (contact: Contact) => 
-        api.put<Contact>(`/contacts/${contact.id}`, {
-            ...contact,
+    toggleFavorite: async (contact: Contact): Promise<Contact> => 
+        (await api.patch<Contact>(`/contacts/${contact.id}`, {
             favorite: !contact.favorite
-        }).then(r => r.data),
+        })).data,
     
 }
 
@@ -75,6 +78,6 @@ export const groupsApi = {
 }
 
 export const historyApi = {
-    getAll: () => 
-        api.get<CallHistory[]>('/history').then(r => r.data)
+    getAll: async (): Promise<CallHistory[]> => 
+        (await api.get<CallHistory[]>('/history?_sort=date&_order=desc')).data
 }
