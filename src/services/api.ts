@@ -10,7 +10,7 @@ const api = axios.create({
 
 api.interceptors.request.use (
     (config) => {
-        logger.debug(`$config.method?.toUppercase() ${config.url}`, config.data)
+        logger.debug(`${config.method?.toUpperCase()} ${config.url}`, config.data)
         return config
     },
     (error) => {
@@ -21,7 +21,7 @@ api.interceptors.request.use (
 
 api.interceptors.response.use (
     (response) => {
-        logger.debug(`${response.status} $response.config.url`, response.data)
+        logger.debug(`${response.status} ${response.config.url}`, response.data)
         return response
     },
     (error) => {
@@ -80,5 +80,5 @@ export const groupsApi = {
 
 export const historyApi = {
     getAll: async (): Promise<CallHistory[]> => 
-        (await api.get<CallHistory[]>('/history?_sort=date&_order=desc')).data
+        (await api.get<CallHistory[]>('/history')).data
 }
