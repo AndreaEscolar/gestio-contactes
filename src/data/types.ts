@@ -24,14 +24,9 @@ export interface CallHistory {
     duration?: number
 }
 
-// Formulario (sin id para crear un nuevo contacto)
+// Formulario 
 export type ContactForm = Omit<Contact, 'id' | 'createdAt'>
 
-// Estados error validación
-export interface ValidationErrors {
-    firstName?: string
-    lastName?: string
-    phone?: string 
-    email?: string
-    groupId?: string
-}
+export type ValidationErrors = Partial<Record<keyof ContactForm, string>>
+
+export type GroupWithCount = Group & { count: number }
