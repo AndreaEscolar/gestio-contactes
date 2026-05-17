@@ -64,17 +64,18 @@ export const contactsApi = {
 }
 
 export const groupsApi = {
-    getAll: () => 
-        api.get<Group[]>('/groups').then(r => r.data),
+    getAll: async (): Promise<Group[]> => 
+       (await api.get<Group[]>('/groups')).data,
 
-    create: (data: Omit<Group, 'id'>) =>
-        api.post<Group>('/groups', data).then(r => r.data),
+    create: async (data: Omit<Group, 'id'>): Promise<Group> =>
+        (await api.post<Group>('/groups', data)).data,
 
-    update: (id: number, data: Partial<Group>) =>
-        api.put<Group>(`/groups/${id}`, data).then(r => r.data),
+    update: async (id: number, data: Partial<Group>): Promise<Group> =>
+        (await api.put<Group>(`/groups/${id}`, data)).data,
 
-    delete: (id: number) => 
-        api.delete(`/groups/${id}`).then(r => r.data),
+    delete: async (id: number): Promise<void> => { 
+        await api.delete(`/groups/${id}`)
+    },
 }
 
 export const historyApi = {
